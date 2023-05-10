@@ -44,7 +44,7 @@
 .input-date {
   border-left: none;
   width: 15vw;
-  border-radius: none;
+  border-radius: 0 !important;
 }
 
 .input-todo:focus,
