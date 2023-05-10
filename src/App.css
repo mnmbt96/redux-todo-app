@@ -392,8 +392,8 @@
   .input-edit-date,
   .btn-confirm {
     height: 30px;
-    min-width: 10rem !important;
-    max-width: 10rem !important;
+    min-width: 12rem !important;
+    max-width: 12rem !important;
   }
 
   .btn-confirm {
