@@ -1,0 +1,401 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  color: #374a61;
+}
+
+.title {
+  font-size: 3.2em;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 3rem 0 1rem 0;
+  letter-spacing: 2px;
+}
+
+.input-todo-area {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.input-todo,
+.input-date {
+  box-sizing: border-box;
+  height: 3rem;
+  border: 2px solid #374a61;
+  color: #374a61;
+  padding: 5px;
+}
+
+.input-todo {
+  border-radius: 6px 0 0 6px;
+  width: 25vw;
+}
+
+.input-date {
+  border-left: none;
+  width: 15vw;
+}
+
+.input-todo:focus,
+.input-date:focus {
+  outline: none;
+}
+
+.btn-add-todo {
+  height: 3rem;
+  border: 2px solid #374a61;
+  border-left: none;
+  background-color: #374a61;
+  color: white;
+  border-radius: 0 6px 6px 0;
+  padding: 0 2rem;
+}
+
+.btn-add-todo:hover {
+  background-color: #374a61;
+}
+
+.btn-add-todo:active {
+  background-color: #374a61;
+}
+
+.num-task {
+  font-weight: bold;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+}
+
+.dropdown-wrapper {
+  display: none;
+}
+
+.index {
+  margin: 0 1rem;
+  background-color: transparent;
+  color: #374a61da;
+}
+
+.index-icon {
+  margin-right: 0.5rem;
+  color: #374a61da !important;
+}
+
+.active-index {
+  border-bottom: 1px solid #374a61;
+  border-radius: 0;
+  font-weight: 800;
+  color: #374a61;
+}
+
+.index-border {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.index:focus {
+  outline: none;
+}
+
+.edit-input-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #374a61;
+  border-radius: 6px;
+  margin: 0.3rem 0;
+}
+
+.input-edit-todo {
+  min-width: 12rem;
+  max-width: 12rem;
+}
+
+#select-status {
+  min-width: 7rem;
+  max-width: 7rem;
+}
+
+.input-edit-date {
+  min-width: 8rem;
+  max-width: 8rem;
+}
+
+.input-edit-todo,
+.input-edit-date,
+#select-status {
+  height: 36px;
+  padding: 0 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #374a61;
+  color: #374a61;
+  box-sizing: border-box;
+}
+
+.input-edit-todo:focus,
+.input-edit-date:focus,
+#select-status:focus {
+  outline: none;
+}
+
+.btn-confirm {
+  background-color: #374a61;
+  color: white;
+  border-radius: 6px !important;
+}
+
+.btn-confirm:hover {
+  background-color: #374a61bd;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  height: 5rem;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #374a61;
+  border-radius: 6px;
+  margin: 0.3rem 0;
+}
+
+.checkbox-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkbox {
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  accent-color: #374a61;
+}
+
+.text {
+  min-width: 12rem;
+  max-width: 12rem;
+  margin: 0 !important;
+  font-weight: 600;
+}
+
+.status-due {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.completed-todo {
+  text-decoration: line-through;
+}
+
+.due-area {
+  min-width: 6rem;
+  max-width: 6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.status {
+  min-width: 6rem;
+  max-width: 6rem;
+  margin: 0 !important;
+}
+
+.due-warning {
+  font-weight: bold;
+  margin: 0 !important;
+}
+
+.due {
+  font-size: 0.8rem;
+  margin: 0 !important;
+}
+
+.buttons {
+  min-width: 7rem;
+  max-width: 7rem;
+  text-align: center;
+}
+
+.btn-edit,
+.btn-delete {
+  background-color: transparent;
+}
+
+.modal-content {
+  border: none !important;
+  color: #374a61 !important;
+}
+
+.modal-header {
+  border-bottom: none !important;
+}
+.modal-footer {
+  border-top: none !important;
+  justify-content: center !important;
+}
+
+.modal-btn {
+  border: none !important;
+  padding: 0.5rem 2rem !important;
+}
+
+.btn-yes {
+  background-color: #b63c46 !important;
+}
+
+.btn-no {
+  background-color: #374a61bd !important;
+}
+
+.modal-backdrop {
+  --bs-backdrop-bg: rgba(0, 0, 0, 0.447) !important;
+}
+
+@media screen and (max-width: 850px) {
+  .input-todo {
+    width: 40vw;
+  }
+
+  .index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    margin: 0;
+  }
+  .index-icon {
+    margin-right: 0;
+    margin-bottom: 0.2rem;
+  }
+
+  .index-border {
+    font-size: 3rem;
+    font-weight: 100;
+    display: none;
+  }
+
+  .buttons {
+    min-width: 4rem;
+    max-width: 4rem;
+  }
+
+  .input-edit-todo {
+    min-width: 10.5rem;
+    max-width: 10.5rem;
+  }
+
+  .btn-confirm {
+    padding: 0.6em 0.4rem;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    padding: 0;
+  }
+
+  .btn-edit {
+    padding-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .btn-add-todo {
+    padding: 0 1rem;
+  }
+  .text {
+    min-width: 8rem;
+    max-width: 8rem;
+  }
+
+  .input-edit-todo {
+    min-width: 9.5rem;
+    max-width: 9.5rem;
+  }
+
+  #select-status {
+    min-width: 6rem;
+    max-width: 6rem;
+  }
+
+  .input-edit-date {
+    min-width: 6rem;
+    max-width: 6rem;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .dropdown-wrapper {
+    display: block;
+  }
+  .button-wrapper {
+    display: none;
+  }
+  #dropdown-index {
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 6px;
+    border: 1px solid #374a61;
+    color: #374a61;
+  }
+  #dropdown-index:focus {
+    outline: none;
+  }
+
+  .input-date {
+    width: 6rem;
+  }
+  .todo-list {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10rem;
+  }
+
+  .text {
+    text-align: center;
+  }
+
+  .status {
+    text-align: center;
+  }
+
+  .edit-input-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.1rem;
+    width: 15rem;
+    height: 10rem;
+  }
+  .input-edit-todo,
+  #select-status,
+  .input-edit-date,
+  .btn-confirm {
+    height: 30px;
+    min-width: 10rem;
+    max-width: 10rem;
+  }
+
+  .btn-confirm {
+    padding: 0;
+  }
+}
