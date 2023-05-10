@@ -44,7 +44,7 @@
 .input-date {
   border-left: none;
   width: 15vw;
-  border-radius: 0 !important;
+  border-radius: 0;
 }
 
 .input-todo:focus,
@@ -387,13 +387,19 @@
     width: 15rem;
     height: 10rem;
   }
+
+  .input-edit-date {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
   .input-edit-todo,
   #select-status,
   .input-edit-date,
   .btn-confirm {
     height: 30px;
-    min-width: 12rem !important;
-    max-width: 12rem !important;
+    min-width: 10rem !important;
+    max-width: 10rem !important;
   }
 
   .btn-confirm {
