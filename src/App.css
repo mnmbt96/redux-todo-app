@@ -17,7 +17,7 @@
   font-size: 3.2em;
   font-weight: 900;
   line-height: 1.1;
-  margin: 3rem 0 1rem 0;
+  margin: 1.7rem 0 1rem 0;
   letter-spacing: 2px;
 }
 
@@ -269,6 +269,23 @@
 
 .modal-backdrop {
   --bs-backdrop-bg: rgba(0, 0, 0, 0.447) !important;
+}
+
+.pagination {
+  margin: 1rem 0;
+}
+
+.page-link {
+  color: #374a61 !important;
+  /* border: 0.5px solid #374a61bd !important; */
+}
+
+.pagination {
+  --bs-pagination-focus-box-shadow: none !important;
+}
+
+.page-active {
+  background-color: #374a613b !important;
 }
 
 @media screen and (max-width: 850px) {
