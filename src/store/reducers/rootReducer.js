@@ -1,90 +1,9 @@
-// const exampleState = {
-//   todos: [
-//     {
-//       id: "001",
-//       text: "HTML",
-//       completed: true,
-//       status: "Completed",
-//       due: "2022-10-31",
-//     },
-//     {
-//       id: "002",
-//       text: "JavaScript",
-//       completed: false,
-//       status: "Pending",
-//       due: "2023-1-31",
-//     },
-//     {
-//       id: "003",
-//       text: "React",
-//       completed: false,
-//       status: "In Progress",
-//       due: "2023-5-12",
-//     },
-//     {
-//       id: "004",
-//       text: "Redux",
-//       completed: false,
-//       status: "In Progress",
-//       due: "2023-5-12",
-//     },
-//     {
-//       id: "005",
-//       text: "Node.js",
-//       completed: false,
-//       status: "New",
-//       due: "2023-6-30",
-//     },
-//   ],
-//   sortedTodos: [
-//     {
-//       id: "001",
-//       text: "HTML",
-//       completed: true,
-//       status: "Completed",
-//       due: "2022-10-31",
-//     },
-//     {
-//       id: "002",
-//       text: "JavaScript",
-//       completed: false,
-//       status: "Pending",
-//       due: "2023-1-31",
-//     },
-//     {
-//       id: "003",
-//       text: "React",
-//       completed: false,
-//       status: "In Progress",
-//       due: "2023-5-12",
-//     },
-//     {
-//       id: "004",
-//       text: "Redux",
-//       completed: false,
-//       status: "In Progress",
-//       due: "2023-5-12",
-//     },
-//     {
-//       id: "005",
-//       text: "Node.js",
-//       completed: false,
-//       status: "New",
-//       due: "2023-6-30",
-//     },
-//   ],
-//   sortStatus: "All",
-// };
-
-const initialState = {
-  todos: [], // 全てのtodoを格納する
-  sortedTodos: [], // sortして表示するtodoのみを格納
-  sortStatus: "All", // 画面上の現在のstatus
-};
+const initialState = JSON.parse(localStorage.getItem("todoState"));
 
 function rootReducer(state = initialState, action) {
   let sortArr = [];
   let newTodos = [];
+  console.log("state", state);
 
   switch (action.type) {
     case "ADD_TODO":
@@ -107,17 +26,19 @@ function rootReducer(state = initialState, action) {
         ];
       }
       // addTodoを呼び出した後のstoreの値
-      return {
+      const addTodoState = {
         todos: [...state.todos, action.payload],
         sortedTodos: sortArr,
         sortStatus: action.sortStatus,
       };
-    case "DELETE_TODO":
-      console.log("id: " + action.payload.id);
 
+      localStorage.setItem("todoState", JSON.stringify(addTodoState));
+      return addTodoState;
+
+    case "DELETE_TODO":
       newTodos = state.todos.filter((todo) => todo.id !== action.payload.id);
 
-      return {
+      const deleteTodoState = {
         todos: newTodos,
         sortedTodos:
           action.sortStatus === "All"
@@ -125,6 +46,9 @@ function rootReducer(state = initialState, action) {
             : newTodos.filter((todo) => todo.status === action.sortStatus),
         sortStatus: action.sortStatus,
       };
+
+      localStorage.setItem("todoState", JSON.stringify(deleteTodoState));
+      return deleteTodoState;
 
     case "TOGGLE_TODO":
       newTodos = state.todos.map((todo) => {
@@ -138,7 +62,7 @@ function rootReducer(state = initialState, action) {
           : todo;
       });
 
-      return {
+      const toggleTodoState = {
         todos: newTodos,
         sortedTodos:
           action.sortStatus === "All"
@@ -146,6 +70,9 @@ function rootReducer(state = initialState, action) {
             : newTodos.filter((todo) => todo.status === action.payload.status),
         sortStatus: action.sortStatus,
       };
+
+      localStorage.setItem("todoState", JSON.stringify(toggleTodoState));
+      return toggleTodoState;
 
     case "EDIT_TODO":
       newTodos = state.todos.map((todo) => {
@@ -161,7 +88,7 @@ function rootReducer(state = initialState, action) {
         return todo;
       });
 
-      return {
+      const editTodoState = {
         todos: newTodos,
         sortedTodos:
           action.sortStatus === "All"
@@ -169,9 +96,11 @@ function rootReducer(state = initialState, action) {
             : newTodos.filter((todo) => todo.status === action.sortStatus),
         sortStatus: action.sortStatus,
       };
+      localStorage.setItem("todoState", JSON.stringify(editTodoState));
+      return editTodoState;
 
     case "CHANGE_SORT_STATUS":
-      return {
+      const changeSortStatusState = {
         todos: [...state.todos],
         sortedTodos:
           action.payload === "All"
@@ -179,6 +108,10 @@ function rootReducer(state = initialState, action) {
             : state.todos.filter((todo) => todo.status === action.payload),
         sortStatus: action.payload,
       };
+
+      localStorage.setItem("todoState", JSON.stringify(changeSortStatusState));
+      return changeSortStatusState;
+
     default:
       return state;
   }
