@@ -1,90 +1,88 @@
-const exampleState = {
-  todos: [
-    {
-      id: "001",
-      text: "HTML",
-      completed: true,
-      status: "Completed",
-      due: "2022-10-31",
-    },
-    {
-      id: "002",
-      text: "JavaScript",
-      completed: false,
-      status: "Pending",
-      due: "2023-1-31",
-    },
-    {
-      id: "003",
-      text: "React",
-      completed: false,
-      status: "In Progress",
-      due: "2023-5-12",
-    },
-    {
-      id: "004",
-      text: "Redux",
-      completed: false,
-      status: "In Progress",
-      due: "2023-5-12",
-    },
-    {
-      id: "005",
-      text: "Node.js",
-      completed: false,
-      status: "New",
-      due: "2023-6-30",
-    },
-  ],
-  sortedTodos: [
-    {
-      id: "001",
-      text: "HTML",
-      completed: true,
-      status: "Completed",
-      due: "2022-10-31",
-    },
-    {
-      id: "002",
-      text: "JavaScript",
-      completed: false,
-      status: "Pending",
-      due: "2023-1-31",
-    },
-    {
-      id: "003",
-      text: "React",
-      completed: false,
-      status: "In Progress",
-      due: "2023-5-12",
-    },
-    {
-      id: "004",
-      text: "Redux",
-      completed: false,
-      status: "In Progress",
-      due: "2023-5-12",
-    },
-    {
-      id: "005",
-      text: "Node.js",
-      completed: false,
-      status: "New",
-      due: "2023-6-30",
-    },
-  ],
-  sortStatus: "All",
-  isEditing: false,
-};
-
-// const initialState = {
-//   todos: [], // 全てのtodoを格納する
-//   sortedTodos: [], // sortして表示するtodoのみを格納
-//   sortStatus: "All", // 画面上の現在のstatus
-//   isEditing: false,
+// const exampleState = {
+//   todos: [
+//     {
+//       id: "001",
+//       text: "HTML",
+//       completed: true,
+//       status: "Completed",
+//       due: "2022-10-31",
+//     },
+//     {
+//       id: "002",
+//       text: "JavaScript",
+//       completed: false,
+//       status: "Pending",
+//       due: "2023-1-31",
+//     },
+//     {
+//       id: "003",
+//       text: "React",
+//       completed: false,
+//       status: "In Progress",
+//       due: "2023-5-12",
+//     },
+//     {
+//       id: "004",
+//       text: "Redux",
+//       completed: false,
+//       status: "In Progress",
+//       due: "2023-5-12",
+//     },
+//     {
+//       id: "005",
+//       text: "Node.js",
+//       completed: false,
+//       status: "New",
+//       due: "2023-6-30",
+//     },
+//   ],
+//   sortedTodos: [
+//     {
+//       id: "001",
+//       text: "HTML",
+//       completed: true,
+//       status: "Completed",
+//       due: "2022-10-31",
+//     },
+//     {
+//       id: "002",
+//       text: "JavaScript",
+//       completed: false,
+//       status: "Pending",
+//       due: "2023-1-31",
+//     },
+//     {
+//       id: "003",
+//       text: "React",
+//       completed: false,
+//       status: "In Progress",
+//       due: "2023-5-12",
+//     },
+//     {
+//       id: "004",
+//       text: "Redux",
+//       completed: false,
+//       status: "In Progress",
+//       due: "2023-5-12",
+//     },
+//     {
+//       id: "005",
+//       text: "Node.js",
+//       completed: false,
+//       status: "New",
+//       due: "2023-6-30",
+//     },
+//   ],
+//   sortStatus: "All",
 // };
 
-function rootReducer(state = exampleState, action) {
+const initialState = {
+  todos: [], // 全てのtodoを格納する
+  sortedTodos: [], // sortして表示するtodoのみを格納
+  sortStatus: "All", // 画面上の現在のstatus
+};
+
+function rootReducer(state = initialState, action) {
   let sortArr = [];
   let newTodos = [];
 
@@ -113,11 +111,9 @@ function rootReducer(state = exampleState, action) {
         todos: [...state.todos, action.payload],
         sortedTodos: sortArr,
         sortStatus: action.sortStatus,
-        isEditing: false,
       };
     case "DELETE_TODO":
-      console.log("画面のstatus: " + action.sortStatus);
-      console.log("todoのstatus: " + action.payload.status);
+      console.log("id: " + action.payload.id);
 
       newTodos = state.todos.filter((todo) => todo.id !== action.payload.id);
 
@@ -128,7 +124,6 @@ function rootReducer(state = exampleState, action) {
             ? [...newTodos]
             : newTodos.filter((todo) => todo.status === action.sortStatus),
         sortStatus: action.sortStatus,
-        isEditing: false,
       };
 
     case "TOGGLE_TODO":
@@ -150,7 +145,6 @@ function rootReducer(state = exampleState, action) {
             ? [...newTodos]
             : newTodos.filter((todo) => todo.status === action.payload.status),
         sortStatus: action.sortStatus,
-        isEditing: false,
       };
 
     case "EDIT_TODO":
@@ -174,7 +168,6 @@ function rootReducer(state = exampleState, action) {
             ? [...newTodos]
             : newTodos.filter((todo) => todo.status === action.sortStatus),
         sortStatus: action.sortStatus,
-        isEditing: false,
       };
 
     case "CHANGE_SORT_STATUS":
@@ -185,7 +178,6 @@ function rootReducer(state = exampleState, action) {
             ? [...state.todos]
             : state.todos.filter((todo) => todo.status === action.payload),
         sortStatus: action.payload,
-        isEditing: false,
       };
     default:
       return state;

@@ -154,13 +154,14 @@
   outline: none;
 }
 
-.btn-confirm {
+.btn-save {
   background-color: #374a61;
+  width: 6rem;
   color: white;
   border-radius: 6px !important;
 }
 
-.btn-confirm:hover {
+.btn-save:hover {
   background-color: #374a61bd;
 }
 
@@ -322,8 +323,9 @@
     max-width: 10.5rem;
   }
 
-  .btn-confirm {
+  .btn-save {
     padding: 0.6em 0.4rem;
+    width: 4.5rem;
   }
 
   .btn-edit,
@@ -413,13 +415,13 @@
   .input-edit-todo,
   #select-status,
   .input-edit-date,
-  .btn-confirm {
+  .btn-save {
     height: 30px;
     min-width: 10rem !important;
     max-width: 10rem !important;
   }
 
-  .btn-confirm {
+  .btn-save {
     padding: 0;
   }
 }

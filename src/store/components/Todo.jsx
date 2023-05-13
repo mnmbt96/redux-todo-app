@@ -17,6 +17,7 @@ const Todo = () => {
   const editStatusRef = useRef(null);
   const dispatch = useDispatch();
   const [editingTodoId, setEditingTodoId] = useState(null);
+  const [deleteTodoId, setDeleteTodoId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const sortedTodos = useSelector((state) => state.sortedTodos).sort((a, b) => {
@@ -34,8 +35,8 @@ const Todo = () => {
     dispatch(toggleTodo(id, status, sortStatus));
   };
 
-  const handleEditClick = (id, sortStatus) => {
-    setEditingTodoId(id, sortStatus);
+  const handleEditClick = (id) => {
+    setEditingTodoId(id);
   };
 
   const handleEditTodo = (
@@ -73,12 +74,14 @@ const Todo = () => {
     }
   };
 
-  const handleModalOpen = () => {
+  const handleModalOpen = (id) => {
     setIsModalOpen(true);
+    setDeleteTodoId(id);
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+    setDeleteTodoId(null);
   };
 
   const getDueDate = (dueDateString) => {
@@ -105,6 +108,7 @@ const Todo = () => {
     }
   };
 
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(5);
   const indexOfLastTodo = currentPage * todosPerPage;
@@ -144,7 +148,7 @@ const Todo = () => {
                   ref={editDateRef}
                 />
                 <button
-                  className="btn-confirm"
+                  className="btn-save"
                   onClick={() =>
                     handleEditTodo(
                       todo.id,
@@ -156,7 +160,7 @@ const Todo = () => {
                     )
                   }
                 >
-                  Confirm
+                  Save
                 </button>
               </div>
             );
@@ -208,7 +212,7 @@ const Todo = () => {
                   </button>
                   <button
                     className="btn-delete"
-                    onClick={() => handleModalOpen()}
+                    onClick={() => handleModalOpen(todo.id)}
                   >
                     <FontAwesomeIcon
                       className="icon"
@@ -241,7 +245,7 @@ const Todo = () => {
                     <Modal.Footer>
                       <Button
                         className="modal-btn btn-yes"
-                        onClick={() => handleDelete(todo.id, sortStatus)}
+                        onClick={() => handleDelete(deleteTodoId, sortStatus)}
                       >
                         Yes
                       </Button>
