@@ -1,4 +1,10 @@
-const initialState = JSON.parse(localStorage.getItem("todoState"));
+const initialState = JSON.parse(
+  localStorage.getItem("todoState") || {
+    todos: [],
+    sortedTodos: [],
+    sortStatus: "All",
+  }
+);
 
 function rootReducer(state = initialState, action) {
   let sortArr = [];
