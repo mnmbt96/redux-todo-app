@@ -13,7 +13,7 @@ __Users can ...__
 
 ・Edit and delete
 
-・Make sure with delete confirmation modal to prevent accidental delete
+・Make sure delete with modal to prevent accidental delete
 
 ・Get numbers of due today
 
