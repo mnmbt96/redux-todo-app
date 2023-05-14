@@ -9,11 +9,13 @@ __Link:__ https://mnmbt96-redux-todo-app.netlify.app
 ## Results
 __Users can ...__
 
-・Add todo and due date
+・Add todo with due date but inpuuting due is not mandatory. (The due will be "TBD" if there is no input.)
 
 ・Edit and delete
 
-・Get numbers of todo due today
+・Make sure with delete confirmation modal to prevent accidental delete
+
+・Get numbers of due today
 
 ・Get todos by status
 
