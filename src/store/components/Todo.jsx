@@ -118,7 +118,10 @@ const Todo = () => {
 
   return (
     <>
-      {currentTodos &&
+      {sortedTodos.length === 0 ? (
+        <h6>NO TASKS NOW</h6>
+      ) : (
+        currentTodos &&
         currentTodos.map((todo) => {
           if (editingTodoId === todo.id) {
             return (
@@ -261,7 +264,8 @@ const Todo = () => {
               </div>
             );
           }
-        })}
+        })
+      )}
       <Pagination
         todosPerPage={todosPerPage}
         totalTodos={sortedTodos.length}
